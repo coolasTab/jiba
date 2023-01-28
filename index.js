@@ -27,6 +27,10 @@ mongoose.connection.on("disconnected", () => {
 
 app.use(express.json());
 
+app.use("/", (req,res) => {
+    res.json({message : "Hello from express app"})
+})
+
 app.use("/api/city", cityRoute);
 app.use("/api/cars", carsRoute);
 
