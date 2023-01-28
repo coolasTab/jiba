@@ -10,7 +10,9 @@ import carsRoute from "./routes/cars.js";
 dotenv.config();
 
 mongoose.set("strictQuery", true);
-const connect = async () => {
+
+mongoose.connect(process.env.MONGO_URL);
+/*const connect = async () => {
 try {
     await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to MongoDB");
@@ -22,7 +24,7 @@ try {
 mongoose.connection.on("disconnected", () => {
     console.log("Disconnected from MongoDB");
 });
-
+*/
 //middleware
 
 app.use(express.json());
@@ -30,7 +32,6 @@ app.use(express.json());
 app.use("/api/city", cityRoute);
 app.use("/api/cars", carsRoute);
 
-app.listen(process.env.PORT || 8800,() => {
-    connect();
+app.listen(8800,() => {
     console.log("connected to server");
 });
